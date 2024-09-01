@@ -3,7 +3,123 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ToDo List</title>
+    <title>Todo List</title>
+    <link rel="icon" type="image/svg+xml" href="https://firebasestorage.googleapis.com/v0/b/rps-game-2024.appspot.com/o/other%2Fchecklist.png?alt=media&token=0033ba5e-4d42-480f-a647-16765854bf39" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
   </head>
-  <body></body>
+  <body>
+    <nav>
+      <div class="profile">
+        <h3>Fery Hasyim</h3>
+        <p>Developer</p>
+      </div>
+      <div id="editProfile">
+        <i class="fa fa-edit"></i>
+      </div>
+      <div class="time">
+        <h4>01 September 2024</h4>
+        <p id="clock">19:45</p>
+      </div>
+    </nav>
+    <section>
+      <div class="container form">
+        <button id="addTaskBtn" class="add-task-btn"><i class="fa fa-plus"></i>Add Task</button>
+        <h3>Add New Task</h3>
+        <div id="newTaskForm" class="new-task-form">
+          <textarea id="taskText" placeholder="Enter your task..." maxlength="100"></textarea>
+          <label for="priorityLevel">Priority Level:</label>
+          <select id="priorityLevel">
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+          </select>
+          <label for="taskDate">Deadline:</label>
+          <input type="date" id="taskDate" />
+          <button id="submitTaskBtn">SUBMIT</button>
+        </div>
+      </div>
+      <div class="container">
+        <h3>Ongoing Tasks</h3>
+        <div id="containerTasks" class="container-tasks">
+          <div class="task">
+            <div class="task-title">
+              <input type="checkbox" name="checkbox" id="" />
+              <p>Belajar Golang</p>
+              <span>
+                <p>[Medium]</p>
+                <div id="deleteTask">
+                  <i class="fa fa-trash-o"></i>
+                </div>
+              </span>
+            </div>
+            <div class="task-info">
+              <p>Added at : <span>1 September 2024</span></p>
+              <p>deadline : <span>1 November 2024</span></p>
+            </div>
+          </div>
+          <div class="task">
+            <div class="task-title">
+              <input type="checkbox" name="checkbox" id="" />
+              <p>Mendapatkan Pekerjaan</p>
+              <span>
+                <p>[HIGH]</p>
+                <div id="deleteTask">
+                  <i class="fa fa-trash-o"></i>
+                </div>
+              </span>
+            </div>
+            <div class="task-info">
+              <p>Added at : <span>1 September 2024</span></p>
+              <p>deadline : <span>1 January 2025</span></p>
+            </div>
+          </div>
+          <div class="task">
+            <div class="task-title">
+              <input type="checkbox" name="checkbox" id="" />
+              <p>Menguasai 3 bahasa asing</p>
+              <span>
+                <p>[LOW]</p>
+                <div id="deleteTask">
+                  <i class="fa fa-trash-o"></i>
+                </div>
+              </span>
+            </div>
+            <div class="task-info">
+              <p>Added at : <span>1 September 2024</span></p>
+              <p>deadline : <span>3 March 2026</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <h3 style="color: #4caf50">Completed Tasks</h3>
+      </div>
+      <div class="container">
+        <h3 style="color: #f44336">Overdue Tasks</h3>
+        <div id="containerTasks" class="container-tasks">
+          <div class="task">
+            <div class="task-title">
+              <input type="checkbox" name="checkbox" id="" />
+              <p>Rajin ngoding</p>
+              <span>
+                <p>[Medium]</p>
+                <div id="deleteTask">
+                  <i class="fa fa-trash-o"></i>
+                </div>
+              </span>
+            </div>
+            <div class="task-info">
+              <p>Added at : <span>1 September 2023</span></p>
+              <p>deadline : <span>1 September 2024</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container buttons">
+        <button class="delete-all-tasks-button">DELETE ALL TASK</button>
+        <button class="reset-app">RESET</button>
+      </div>
+    </section>
+  </body>
 </html>
