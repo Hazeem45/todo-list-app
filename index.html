@@ -14,7 +14,7 @@
         <h3>Fery Hasyim</h3>
         <p>Developer</p>
       </div>
-      <div id="editProfile">
+      <div id="editProfile" class="edit-profile">
         <i class="fa fa-edit"></i>
       </div>
       <div class="time">
@@ -23,21 +23,27 @@
       </div>
     </nav>
     <section>
-      <div class="container form">
+      <div class="container">
         <button id="addTaskBtn" class="add-task-btn"><i class="fa fa-plus"></i>Add Task</button>
         <h3>Add New Task</h3>
         <div id="newTaskForm" class="new-task-form">
-          <textarea id="taskText" placeholder="Enter your task..." maxlength="100"></textarea>
-          <label for="priorityLevel">Priority Level:</label>
-          <select id="priorityLevel">
-            <option value="low">Low</option>
-            <option value="medium">Medium</option>
-            <option value="high">High</option>
-          </select>
-          <label for="taskDate">Deadline:</label>
-          <input type="date" id="taskDate" />
-          <button id="submitTaskBtn">SUBMIT</button>
+          <textarea id="taskText" placeholder="Enter your task..." maxlength="150"></textarea>
+          <div class="priority-n-deadline">
+            <div class="priority-level">
+              <label for="priorityLevel">Priority Level :</label>
+              <select id="priorityLevel">
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+              </select>
+            </div>
+            <div class="input-deadline">
+              <label for="taskDate">Set Deadline :</label>
+              <input type="date" id="taskDate" />
+            </div>
+          </div>
         </div>
+        <button id="submitTaskBtn" class="submit-task-btn">SUBMIT</button>
       </div>
       <div class="container">
         <h3>Ongoing Tasks</h3>
@@ -45,49 +51,49 @@
           <div class="task">
             <div class="task-title">
               <input type="checkbox" name="checkbox" id="" />
-              <p>Belajar Golang</p>
+              <h4>Belajar Golang</h4>
               <span>
-                <p>[Medium]</p>
+                <h4>[Medium]</h4>
                 <div id="deleteTask">
                   <i class="fa fa-trash-o"></i>
                 </div>
               </span>
             </div>
             <div class="task-info">
-              <p>Added at : <span>1 September 2024</span></p>
-              <p>deadline : <span>1 November 2024</span></p>
+              <p>Added : <span>1 September 2024</span></p>
+              <p>Deadline : <span>1 November 2024</span></p>
             </div>
           </div>
           <div class="task">
             <div class="task-title">
               <input type="checkbox" name="checkbox" id="" />
-              <p>Mendapatkan Pekerjaan</p>
+              <h4>Mendapatkan Pekerjaan</h4>
               <span>
-                <p>[HIGH]</p>
+                <h4>[HIGH]</h4>
                 <div id="deleteTask">
                   <i class="fa fa-trash-o"></i>
                 </div>
               </span>
             </div>
             <div class="task-info">
-              <p>Added at : <span>1 September 2024</span></p>
-              <p>deadline : <span>1 January 2025</span></p>
+              <p>Added : <span>1 September 2024</span></p>
+              <p>Deadline : <span>1 January 2025</span></p>
             </div>
           </div>
           <div class="task">
             <div class="task-title">
               <input type="checkbox" name="checkbox" id="" />
-              <p>Menguasai 3 bahasa asing</p>
+              <h4>Menguasai 3 bahasa asing</h4>
               <span>
-                <p>[LOW]</p>
+                <h4>[LOW]</h4>
                 <div id="deleteTask">
                   <i class="fa fa-trash-o"></i>
                 </div>
               </span>
             </div>
             <div class="task-info">
-              <p>Added at : <span>1 September 2024</span></p>
-              <p>deadline : <span>3 March 2026</span></p>
+              <p>Added : <span>1 September 2024</span></p>
+              <p>Deadline : <span>3 March 2026</span></p>
             </div>
           </div>
         </div>
@@ -101,17 +107,17 @@
           <div class="task">
             <div class="task-title">
               <input type="checkbox" name="checkbox" id="" />
-              <p>Rajin ngoding</p>
+              <h4>Rajin ngoding</h4>
               <span>
-                <p>[Medium]</p>
+                <h4>[Medium]</h4>
                 <div id="deleteTask">
                   <i class="fa fa-trash-o"></i>
                 </div>
               </span>
             </div>
             <div class="task-info">
-              <p>Added at : <span>1 September 2023</span></p>
-              <p>deadline : <span>1 September 2024</span></p>
+              <p>Added : <span>1 September 2023</span></p>
+              <p>Deadline : <span>1 September 2024</span></p>
             </div>
           </div>
         </div>
@@ -121,5 +127,12 @@
         <button class="reset-app">RESET</button>
       </div>
     </section>
+    <footer>
+        <p>
+          <i class="fa fa-info-circle"></i>
+          This application uses local storage, which means all data will be stored in the user's local storage so it will not be uploaded to cloud storage, therefore data will not be backed up
+        </p>
+        <h3>&copy;2024 Todo List App <a href="https://github.com/Hazeem45" target="_blank">Hazeem45</a></h3>
+      </div>
   </body>
 </html>

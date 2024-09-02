@@ -7,6 +7,11 @@ body {
   background-color: #f4f4f4;
 }
 
+a {
+  all: unset;
+  cursor: pointer;
+}
+
 h1,
 h2,
 h3,
@@ -16,7 +21,7 @@ p {
 }
 
 button {
-  font-size: 0.8em;
+  font-size: 0.85em;
   font-weight: 500;
   font-family: "Montserrat", Arial;
   padding: 1em 1.7em;
@@ -28,20 +33,26 @@ button {
 }
 
 button:active {
-  transform: scale(0.9);
+  transform: scale(0.95);
+}
+
+div,
+button {
+  -webkit-tap-highlight-color: transparent;
 }
 
 nav {
   display: flex;
-  font-size: 0.75em;
+  font-size: 0.85em;
   padding: 0.4175em 0.835em;
 }
 
-nav #editProfile {
-  margin-top: 0.2em;
+nav .edit-profile {
+  display: grid;
+  place-items: center;
   font-size: 1em;
   width: 23px;
-  text-align: center;
+  height: 23px;
 }
 
 nav .time {
@@ -58,17 +69,17 @@ section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 15px;
+  margin: 15px 0;
   gap: 20px;
 }
 
 .container {
   width: 100%;
   max-width: 768px;
-  background-color: white;
-  font-size: 0.75em;
-  padding: 10px 7px 15px;
+  font-size: 0.85em;
+  padding: 10px 10px 15px;
   border-radius: 10px;
+  background-color: white;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
   display: flex;
@@ -83,62 +94,111 @@ section {
 
 .add-task-btn {
   width: max-content;
-  background-color: #4caf50;
+  background-color: #00aa5b;
   display: flex;
   align-items: center;
   gap: 0.5em;
 }
 
 .add-task-btn:hover {
-  background-color: #00a706;
+  background-color: #098a4e;
 }
 
 .new-task-form {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  padding: 0 25px;
 }
 
 .new-task-form textarea {
   resize: none;
-  padding: 10px;
+  padding: 5px 10px;
   border-radius: 5px;
   border: 1px solid #ccc;
-  height: 40px;
+  min-height: 63px;
+  background-color: #f4f4f4;
 }
 
 .new-task-form textarea::placeholder {
-  font-family: sans-serif;
+  font-family: Arial, sans-serif;
+}
+
+.new-task-form .priority-n-deadline {
+  display: grid;
+  gap: 10px;
+}
+
+.priority-level,
+.input-deadline {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex: 1;
 }
 
 .new-task-form select,
 .new-task-form input {
+  font-family: Arial, sans-serif;
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #ccc;
+  background-color: #f4f4f4;
+  flex: 1;
+  box-sizing: border-box;
 }
 
-.new-task-form button {
+.new-task-form textarea:hover,
+.new-task-form select:hover,
+.new-task-form input:hover {
+  box-shadow: 0 0 0 0.1rem rgba(0, 123, 255, 0.25);
+}
+
+.new-task-form textarea:focus,
+.new-task-form select:focus,
+.new-task-form input:focus {
+  border-color: transparent;
+  outline: none;
+  box-shadow: 0 0 4px 1.3px rgba(0, 123, 255, 0.562);
+}
+
+button.submit-task-btn {
+  width: max-content;
   align-self: flex-end;
+  margin-right: 25px;
   background-color: #007bff;
 }
 
-.new-task-form button:hover {
-  background-color: #238dff;
+button.submit-task-btn:hover {
+  background-color: #0063cd;
+}
+
+.container-tasks {
+  display: grid;
+  gap: 10px;
 }
 
 .task {
-  font-size: 0.8em;
+  padding: 0 3px 3px;
+  border-radius: 5px;
+}
+
+.task:hover {
+  background-color: #f4f4f4;
+}
+
+.task p {
+  font-size: 0.85294em;
 }
 
 .task-title {
   display: flex;
   align-items: center;
-  font-size: 1.15em;
 }
 
 .task-title input {
   cursor: pointer;
+  margin-left: 0;
 }
 
 .task-title span {
@@ -161,16 +221,11 @@ section {
 .task-info {
   display: flex;
   justify-content: space-between;
-  padding-left: 20px;
-}
-
-.container-tasks {
-  display: grid;
-  gap: 10px;
+  padding-left: 10px;
 }
 
 .buttons {
-  padding: 10px 7px;
+  padding: 10px;
   flex-direction: row;
 }
 
@@ -191,7 +246,7 @@ section {
 }
 
 .buttons button:last-child:hover {
-  background-color: #d40e00;
+  background-color: #d30e00;
 }
 
 .buttons button:first-child:active {
@@ -201,12 +256,25 @@ section {
   transform: scale(1);
 }
 
+footer {
+  display: grid;
+  gap: 15px;
+  text-align: center;
+  padding: 15px;
+  font-size: 0.85em;
+}
+
+footer h3 {
+  font-weight: 500;
+}
+
 @media only screen and (min-width: 576px) {
   button {
     font-size: 0.875em;
   }
 
-  nav {
+  nav,
+  footer {
     font-size: 0.875em;
   }
 
@@ -217,7 +285,7 @@ section {
 
   .container {
     font-size: 0.875em;
-    padding: 15px 10px;
+    padding: 15px 12.5px;
   }
 
   .container h3 {
@@ -229,14 +297,43 @@ section {
   }
 
   .new-task-form {
-    gap: 12.5px;
+    flex-direction: row;
+    gap: 9px;
+    padding: 0;
   }
 
   .new-task-form textarea {
-    height: 45px;
+    height: 70px;
+    width: 60%;
   }
 
-  .task {
+  .new-task-form .priority-n-deadline {
+    width: 40%;
+    display: grid;
+    gap: 5px;
+  }
+
+  .priority-level,
+  .input-deadline {
+    gap: 5px;
+    width: 100%;
+  }
+
+  .new-task-form select,
+  .new-task-form input {
+    width: 100%;
+  }
+
+  .new-task-form label {
+    width: 84.5px;
+    font-size: 0.875em;
+  }
+
+  button.submit-task-btn {
+    margin-right: 0;
+  }
+
+  .task p {
     font-size: 0.875em;
   }
 
@@ -245,16 +342,17 @@ section {
   }
 
   .task-info {
-    padding-left: 22.5px;
+    padding-left: 12.5px;
   }
 }
 
 @media only screen and (min-width: 768px) {
   button {
-    font-size: 1em;
+    font-size: 0.90625em;
   }
 
-  nav {
+  nav,
+  footer {
     font-size: 1em;
   }
 
@@ -277,15 +375,29 @@ section {
   }
 
   .new-task-form {
-    gap: 15px;
+    gap: 10px;
+    padding: 0;
   }
 
   .new-task-form textarea {
-    height: 50px;
+    width: 55%;
   }
 
-  .task {
-    font-size: 1em;
+  .new-task-form .priority-n-deadline {
+    width: 45%;
+  }
+
+  .priority-level,
+  .input-deadline {
+    gap: 6px;
+  }
+
+  .new-task-form label {
+    width: 97px;
+  }
+
+  .task p {
+    font-size: 0.890625em;
   }
 
   .task-title span {
@@ -293,6 +405,6 @@ section {
   }
 
   .task-info {
-    padding-left: 25px;
+    padding-left: 15px;
   }
 }
