@@ -11,15 +11,15 @@
   <body>
     <nav>
       <div class="profile">
-        <h3>Fery Hasyim</h3>
-        <p>Developer</p>
+        <h3 id="userName">Username</h3>
+        <p id="userJob">-</p>
       </div>
-      <div id="editProfile" class="edit-profile">
+      <div id="editProfileBtn" class="edit-profile-btn">
         <i class="fa fa-edit"></i>
       </div>
       <div class="time">
-        <h4>01 September 2024</h4>
-        <p id="clock">19:45</p>
+        <h4 id="date"></h4>
+        <p id="clock"></p>
       </div>
     </nav>
     <section>
@@ -127,12 +127,28 @@
         <button class="reset-app">RESET</button>
       </div>
     </section>
-    <footer>
-        <p>
-          <i class="fa fa-info-circle"></i>
-          This application uses local storage, which means all data will be stored in the user's local storage so it will not be uploaded to cloud storage, therefore data will not be backed up
-        </p>
-        <h3>&copy;2024 Todo List App <a href="https://github.com/Hazeem45" target="_blank">Hazeem45</a></h3>
+    <div class="popup hidden" id="popup">
+      <div class="edit-profile hidden" id="editProfile">
+        <h2>Profile</h2>
+        <div class="input-wrapper">
+          <input type="text" id="inputName" maxlength="35" placeholder="" />
+          <span>Enter your name</span>
+        </div>
+        <div class="input-wrapper">
+          <input type="text" id="inputJob" maxlength="30" placeholder="" />
+          <span>Enter your job</span>
+        </div>
+        <button id="saveProfileBtn">SAVE</button>
       </div>
+    </div>
+    <footer>
+      <p>
+        <i class="fa fa-info-circle"></i>
+        This application uses local storage, which means all data will be stored in the user's local storage so it will not be uploaded to cloud storage, therefore data will not be backed up
+      </p>
+      <h3>&copy;2024 Todo List App <a href="https://github.com/Hazeem45" target="_blank">Hazeem45</a></h3>
+    </footer>
+
+    <script src="./script.js"></script>
   </body>
 </html>

@@ -47,12 +47,13 @@ nav {
   padding: 0.4175em 0.835em;
 }
 
-nav .edit-profile {
+nav .edit-profile-btn {
   display: grid;
   place-items: center;
   font-size: 1em;
   width: 23px;
   height: 23px;
+  cursor: pointer;
 }
 
 nav .time {
@@ -146,6 +147,7 @@ section {
   background-color: #f4f4f4;
   flex: 1;
   box-sizing: border-box;
+  cursor: pointer;
 }
 
 .new-task-form textarea:hover,
@@ -221,7 +223,7 @@ button.submit-task-btn:hover {
 .task-info {
   display: flex;
   justify-content: space-between;
-  padding-left: 10px;
+  padding-left: 15px;
 }
 
 .buttons {
@@ -268,6 +270,97 @@ footer h3 {
   font-weight: 500;
 }
 
+/* POPUP */
+div.popup {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(5px);
+}
+
+.popup .edit-profile {
+  font-size: 0.85em;
+  padding: 20px 17px 30px;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 25px;
+  animation: popup 0.5s ease-out;
+}
+
+.input-wrapper {
+  display: grid;
+  align-items: center;
+
+  & > * {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  & input {
+    position: relative;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    outline: none;
+    background-color: transparent;
+    color: black;
+    padding: 1rem;
+    z-index: 0;
+    transition: border-color 0.4s;
+
+    &:focus {
+      border-color: #007bff;
+    }
+
+    &:focus ~ span,
+    &:not(:placeholder-shown) ~ span {
+      transform: translateY(-1.7rem) scale(0.9);
+      padding: 0 0.25rem;
+      color: rgba(0, 0, 0, 0.8);
+    }
+  }
+
+  & span {
+    width: max-content;
+    background-color: white;
+    margin-left: 1rem;
+    color: black;
+    transition: transform 0.5s;
+  }
+}
+
+.popup .edit-profile button {
+  background-color: #007bff;
+}
+
+.popup .edit-profile button:hover {
+  background-color: #0063cd;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Animation */
+@keyframes popup {
+  0% {
+    transform: scale(0.5);
+  }
+  70% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Responsive */
 @media only screen and (min-width: 576px) {
   button {
     font-size: 0.875em;
@@ -342,7 +435,11 @@ footer h3 {
   }
 
   .task-info {
-    padding-left: 12.5px;
+    padding-left: 17px;
+  }
+
+  .popup .edit-profile {
+    font-size: 0.875em;
   }
 }
 
@@ -405,6 +502,10 @@ footer h3 {
   }
 
   .task-info {
-    padding-left: 15px;
+    padding-left: 20px;
+  }
+
+  .popup .edit-profile {
+    font-size: 1em;
   }
 }
