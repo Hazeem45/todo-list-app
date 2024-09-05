@@ -154,6 +154,16 @@ function displayTasks() {
 
       if (taskDeadline < today) {
         overdueContainer.appendChild(taskElement);
+        const titleText = document.querySelectorAll(".title-text");
+        const deadline = document.querySelectorAll(".deadline-date");
+
+        titleText.forEach((item) => {
+          item.style.color = item.parentElement.parentElement.parentElement === overdueContainer ? "rgba(244, 64, 52, 0.9)" : "black";
+        });
+
+        deadline.forEach((item) => {
+          item.style.color = item.parentElement.parentElement.parentElement.parentElement === overdueContainer ? "red" : "black";
+        });
       } else {
         ongoingContainer.appendChild(taskElement);
       }
@@ -190,7 +200,7 @@ function createTaskElement(task, index) {
   checkboxBtnDiv.addEventListener("click", () => toggleTaskCompletion(index));
 
   const taskTitle = document.createElement("h4");
-  taskTitle.id = "taskTitle";
+  taskTitle.classList.add("title-text");
   taskTitle.innerText = task.taskTitle;
   if (task.completed) {
     taskTitle.style.textDecoration = "line-through";
@@ -213,7 +223,7 @@ function createTaskElement(task, index) {
   taskInfoDiv.classList.add("task-info");
   taskInfoDiv.innerHTML = `
     <p>Added: <span>${task.added}</span></p>
-    <p>Deadline: <span id="taskDeadline">${task.deadline}</span></p>
+    <p>Deadline: <span class="deadline-date">${task.deadline}</span></p>
   `;
 
   // Append elements
