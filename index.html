@@ -23,9 +23,16 @@
       </div>
     </nav>
     <section>
-      <div class="container">
-        <button id="addTaskBtn" class="add-task-btn"><i class="fa fa-plus"></i>Add Task</button>
-        <h3>Add New Task</h3>
+      <div class="container form-task" id="formTask">
+        <button id="addTaskBtn" class="add-task-btn" onclick="expandForm()">
+          <i class="fa fa-plus"></i>
+          <p>Add Task</p>
+        </button>
+        <button id="hideTaskBtn" class="hide-task-btn" onclick="hideForm()">
+          <i class="fa fa-remove"></i>
+          <p>Hide</p>
+        </button>
+        <h3 id="titleForm">Add New Task</h3>
         <div id="newTaskForm" class="new-task-form">
           <textarea id="taskText" placeholder="Enter your task..." maxlength="150"></textarea>
           <div class="priority-n-deadline">
@@ -46,85 +53,20 @@
         <button id="submitTaskBtn" class="submit-task-btn">SUBMIT</button>
       </div>
       <div class="container">
-        <h3>Ongoing Tasks</h3>
-        <div id="containerTasks" class="container-tasks">
-          <div class="task">
-            <div class="task-title">
-              <input type="checkbox" name="checkbox" id="" />
-              <h4>Belajar Golang</h4>
-              <span>
-                <h4>[Medium]</h4>
-                <div id="deleteTask">
-                  <i class="fa fa-trash-o"></i>
-                </div>
-              </span>
-            </div>
-            <div class="task-info">
-              <p>Added : <span>1 September 2024</span></p>
-              <p>Deadline : <span>1 November 2024</span></p>
-            </div>
-          </div>
-          <div class="task">
-            <div class="task-title">
-              <input type="checkbox" name="checkbox" id="" />
-              <h4>Mendapatkan Pekerjaan</h4>
-              <span>
-                <h4>[HIGH]</h4>
-                <div id="deleteTask">
-                  <i class="fa fa-trash-o"></i>
-                </div>
-              </span>
-            </div>
-            <div class="task-info">
-              <p>Added : <span>1 September 2024</span></p>
-              <p>Deadline : <span>1 January 2025</span></p>
-            </div>
-          </div>
-          <div class="task">
-            <div class="task-title">
-              <input type="checkbox" name="checkbox" id="" />
-              <h4>Menguasai 3 bahasa asing</h4>
-              <span>
-                <h4>[LOW]</h4>
-                <div id="deleteTask">
-                  <i class="fa fa-trash-o"></i>
-                </div>
-              </span>
-            </div>
-            <div class="task-info">
-              <p>Added : <span>1 September 2024</span></p>
-              <p>Deadline : <span>3 March 2026</span></p>
-            </div>
-          </div>
-        </div>
+        <h3>To Do List</h3>
+        <div id="containerTasks" class="container-tasks"></div>
       </div>
       <div class="container">
         <h3 style="color: #4caf50">Completed Tasks</h3>
+        <div id="containerTasks" class="container-tasks"></div>
       </div>
       <div class="container">
         <h3 style="color: #f44336">Overdue Tasks</h3>
-        <div id="containerTasks" class="container-tasks">
-          <div class="task">
-            <div class="task-title">
-              <input type="checkbox" name="checkbox" id="" />
-              <h4>Rajin ngoding</h4>
-              <span>
-                <h4>[Medium]</h4>
-                <div id="deleteTask">
-                  <i class="fa fa-trash-o"></i>
-                </div>
-              </span>
-            </div>
-            <div class="task-info">
-              <p>Added : <span>1 September 2023</span></p>
-              <p>Deadline : <span>1 September 2024</span></p>
-            </div>
-          </div>
-        </div>
+        <div id="containerTasks" class="container-tasks"></div>
       </div>
       <div class="container buttons">
-        <button class="delete-all-tasks-button">DELETE ALL TASK</button>
-        <button class="reset-app">RESET</button>
+        <button class="delete-all-tasks-button" onclick="deleteAllTasks()">DELETE ALL TASK</button>
+        <button class="reset-app" onclick="clearLocalStorage()">RESET</button>
       </div>
     </section>
     <div class="popup hidden" id="popup">
