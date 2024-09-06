@@ -15,6 +15,8 @@ const taskDate = document.getElementById("taskDate");
 const ongoingContainer = document.querySelector(".container-tasks");
 const completedContainer = document.querySelectorAll(".container-tasks")[1];
 const overdueContainer = document.querySelectorAll(".container-tasks")[2];
+const confirmAction = document.getElementById("confirmAction");
+const confirmBtn = document.getElementById("confirmBtn");
 
 // Format Date DAY MONTH YEAR
 function formatDate(datestring) {
@@ -34,11 +36,12 @@ function loadProfile() {
     userJob.textContent = profile.job || "--";
     nameInput.value = profile.name;
     jobInput.value = profile.job;
-    popup.classList.add("hidden");
     profilePopup.classList.add("hidden");
+    enableScroll();
   } else {
     popup.classList.remove("hidden");
     profilePopup.classList.remove("hidden");
+    disableScroll();
   }
 }
 
@@ -47,16 +50,21 @@ saveProfileBtn.addEventListener("click", function () {
   const name = nameInput.value;
   const job = jobInput.value;
   if (!name) {
+    document.querySelectorAll(".error-message")[1].classList.remove("hidden");
     const savedProfile = JSON.parse(localStorage.getItem("profile"));
-    alert("name can't be empty!");
-    nameInput.value = savedProfile.name;
+    if (savedProfile) {
+      nameInput.value = savedProfile.name;
+    }
   } else {
     const profile = {
       name: name,
       job: job,
     };
     localStorage.setItem("profile", JSON.stringify(profile));
+    popup.classList.add("hidden");
+    document.querySelectorAll(".error-message")[1].classList.add("hidden");
     loadProfile();
+    enableScroll();
   }
 });
 
@@ -64,6 +72,7 @@ saveProfileBtn.addEventListener("click", function () {
 editProfileBtn.addEventListener("click", function () {
   popup.classList.remove("hidden");
   profilePopup.classList.remove("hidden");
+  disableScroll();
 });
 
 // Update Time and Date
@@ -95,6 +104,7 @@ function hideForm() {
   hideTaskButton.style.display = "none";
   formTask.style.maxHeight = "70px";
   document.getElementById("titleForm").style.opacity = 0;
+  document.querySelectorAll(".error-message")[0].classList.add("hidden");
 
   // reset form value
   taskText.value = "";
@@ -109,7 +119,7 @@ submitTaskBtn.addEventListener("click", function () {
   const deadline = taskDate.value;
   const date = new Date();
 
-  if (taskTitle && deadline) {
+  if (taskTitle && priority && deadline) {
     const task = {
       taskTitle: taskTitle,
       priority: priority,
@@ -119,8 +129,9 @@ submitTaskBtn.addEventListener("click", function () {
     };
     saveTask(task);
     displayTasks();
+    document.querySelectorAll(".error-message")[0].classList.add("hidden");
   } else {
-    alert("input field can't be empty!");
+    document.querySelectorAll(".error-message")[0].classList.remove("hidden");
   }
 });
 
@@ -154,6 +165,16 @@ function displayTasks() {
 
       if (taskDeadline < today) {
         overdueContainer.appendChild(taskElement);
+        const titleText = document.querySelectorAll(".title-text");
+        const deadline = document.querySelectorAll(".deadline-date");
+
+        titleText.forEach((item) => {
+          item.style.color = item.parentElement.parentElement.parentElement === overdueContainer ? "rgba(244, 64, 52, 0.9)" : "black";
+        });
+
+        deadline.forEach((item) => {
+          item.style.color = item.parentElement.parentElement.parentElement.parentElement === overdueContainer ? "red" : "black";
+        });
       } else {
         ongoingContainer.appendChild(taskElement);
       }
@@ -190,7 +211,7 @@ function createTaskElement(task, index) {
   checkboxBtnDiv.addEventListener("click", () => toggleTaskCompletion(index));
 
   const taskTitle = document.createElement("h4");
-  taskTitle.id = "taskTitle";
+  taskTitle.classList.add("title-text");
   taskTitle.innerText = task.taskTitle;
   if (task.completed) {
     taskTitle.style.textDecoration = "line-through";
@@ -204,16 +225,21 @@ function createTaskElement(task, index) {
   deleteTaskDiv.id = "deleteTask";
   deleteTaskDiv.innerHTML = '<i class="fa fa-trash-o"></i>';
   deleteTaskDiv.addEventListener("click", () => {
-    if (confirm("Delete This Task?")) {
+    popup.classList.remove("hidden");
+    confirmAction.classList.remove("hidden");
+    document.getElementById("question").textContent = `Are You Sure Want to Delete "${task.taskTitle}" Task?`;
+    disableScroll();
+    confirmBtn.addEventListener("click", () => {
       deleteTask(index);
-    }
+      hidePopup();
+    });
   });
 
   const taskInfoDiv = document.createElement("div");
   taskInfoDiv.classList.add("task-info");
   taskInfoDiv.innerHTML = `
     <p>Added: <span>${task.added}</span></p>
-    <p>Deadline: <span id="taskDeadline">${task.deadline}</span></p>
+    <p>Deadline: <span class="deadline-date">${task.deadline}</span></p>
   `;
 
   // Append elements
@@ -235,6 +261,12 @@ function toggleTaskCompletion(index) {
   displayTasks();
 }
 
+function hidePopup() {
+  popup.classList.add("hidden");
+  confirmAction.classList.add("hidden");
+  enableScroll();
+}
+
 // Delete one of task
 function deleteTask(index) {
   let tasks = JSON.parse(localStorage.getItem("tasks"));
@@ -244,17 +276,35 @@ function deleteTask(index) {
 }
 
 function deleteAllTasks() {
-  if (confirm("Are You Sure Want To Delete All Tasks?")) {
+  popup.classList.remove("hidden");
+  confirmAction.classList.remove("hidden");
+  document.getElementById("question").textContent = `Are You Sure Want to Delete All Tasks?`;
+  disableScroll();
+  confirmBtn.addEventListener("click", () => {
     localStorage.removeItem("tasks");
     displayTasks();
-  }
+    hidePopup();
+  });
 }
 
 function clearLocalStorage() {
-  if (confirm("Are You Sure Want To Clear All Saved Data?\n(include profile and all task)")) {
+  popup.classList.remove("hidden");
+  confirmAction.classList.remove("hidden");
+  document.getElementById("question").textContent = `Are You Sure Want To Clear All Saved Data?\n(include profile and all task)`;
+  disableScroll();
+  confirmBtn.addEventListener("click", () => {
     localStorage.clear();
     location.reload();
-  }
+  });
+}
+
+// scroll handler
+function disableScroll() {
+  document.body.classList.add("disable-scrolling");
+}
+
+function enableScroll() {
+  document.body.classList.remove("disable-scrolling");
 }
 
 loadProfile();
