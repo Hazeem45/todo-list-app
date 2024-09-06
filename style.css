@@ -493,6 +493,10 @@ div.popup {
     padding: 0;
   }
 
+  .form-task h3 {
+    margin-bottom: 25px;
+  }
+
   .new-task-form textarea {
     height: 70px;
     width: 60%;
@@ -540,6 +544,10 @@ div.popup {
   .popup .confirm-action {
     font-size: 0.875em;
   }
+
+  .form-task .error-message {
+    top: 85px;
+  }
 }
 
 @media only screen and (min-width: 768px) {
@@ -568,6 +576,10 @@ div.popup {
 
   .form-task {
     margin-bottom: 0;
+  }
+
+  .form-task h3 {
+    margin-bottom: 30px;
   }
 
   .add-task-btn {
@@ -611,5 +623,9 @@ div.popup {
   .popup .edit-profile,
   .popup .confirm-action {
     font-size: 1em;
+  }
+
+  .form-task .error-message {
+    top: 100px;
   }
 }
