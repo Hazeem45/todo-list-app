@@ -7,6 +7,10 @@ body {
   background-color: #f4f4f4;
 }
 
+.disable-scrolling {
+  overflow: hidden;
+}
+
 a {
   all: unset;
   cursor: pointer;
@@ -18,6 +22,11 @@ h3,
 h4,
 p {
   margin: 0;
+}
+
+div,
+button {
+  -webkit-tap-highlight-color: transparent;
 }
 
 button {
@@ -87,7 +96,8 @@ section {
   flex-direction: column;
   gap: 10px;
   overflow: hidden;
-  transition: 0.5s;
+  transition: 0.35s;
+  position: relative;
 }
 
 .container h3 {
@@ -112,7 +122,8 @@ section {
 
 .form-task h3 {
   opacity: 0;
-  transition: 0.5s;
+  transition: 0.35s;
+  margin-bottom: 20px;
 }
 
 .add-task-btn,
@@ -276,8 +287,8 @@ button.submit-task-btn:hover {
   background-color: #f44336;
 }
 
-.buttons button:first-child:hover {
-  border-color: black;
+.buttons button:first-child:hover,
+.confirm-action button:last-child:hover {
   color: black;
 }
 
@@ -285,7 +296,8 @@ button.submit-task-btn:hover {
   background-color: #d30e00;
 }
 
-.buttons button:first-child:active {
+.buttons button:first-child:active,
+.confirm-action button:last-child:active {
   border-color: transparent;
   color: white;
   background-color: #f44336;
@@ -314,7 +326,8 @@ div.popup {
   backdrop-filter: blur(5px);
 }
 
-.popup .edit-profile {
+.popup .edit-profile,
+.popup .confirm-action {
   font-size: 0.85em;
   padding: 20px 17px 30px;
   border-radius: 10px;
@@ -325,7 +338,8 @@ div.popup {
   flex-direction: column;
   text-align: center;
   gap: 25px;
-  animation: popup 0.5s ease-out;
+  animation: popup 0.35s ease-out;
+  position: relative;
 }
 
 .input-wrapper {
@@ -346,7 +360,7 @@ div.popup {
     color: black;
     padding: 1rem;
     z-index: 0;
-    transition: border-color 0.4s;
+    transition: border-color 0.35s;
 
     &:focus {
       border-color: #007bff;
@@ -365,7 +379,7 @@ div.popup {
     background-color: white;
     margin-left: 1rem;
     color: black;
-    transition: transform 0.5s;
+    transition: transform 0.35s;
   }
 }
 
@@ -373,12 +387,53 @@ div.popup {
   background-color: #007bff;
 }
 
-.popup .edit-profile button:hover {
+.popup .edit-profile button:hover,
+.confirm-action button:first-child:hover {
   background-color: #0063cd;
+}
+
+.error-message {
+  text-align: center;
+  color: red;
+}
+
+.form-task .error-message {
+  position: absolute;
+  top: 80px;
+  right: 0;
+  left: 0;
 }
 
 .hidden {
   display: none !important;
+}
+
+.popup .confirm-action {
+  position: absolute;
+  top: 10px;
+  margin: 0 15px;
+  animation: fall 0.25s ease-out;
+  max-width: 300px;
+  padding: 15px;
+  gap: 15px;
+}
+
+.confirm-action .button-wraper {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.confirm-action button:first-child {
+  background-color: #007bff;
+  width: 45%;
+}
+
+.confirm-action button:last-child {
+  border: 1px solid #f44336;
+  color: #f44336;
+  background-color: transparent;
+  width: 45%;
 }
 
 /* Animation */
@@ -391,6 +446,15 @@ div.popup {
   }
   100% {
     transform: scale(1);
+  }
+}
+
+@keyframes fall {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
   }
 }
 
@@ -472,7 +536,8 @@ div.popup {
     padding-left: 17px;
   }
 
-  .popup .edit-profile {
+  .popup .edit-profile,
+  .popup .confirm-action {
     font-size: 0.875em;
   }
 }
@@ -543,7 +608,8 @@ div.popup {
     padding-left: 20px;
   }
 
-  .popup .edit-profile {
+  .popup .edit-profile,
+  .popup .confirm-action {
     font-size: 1em;
   }
 }
