@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
   </head>
   <body>
-    <nav>
-      <div class="profile">
+    <header>
+      <div class="profile" style="cursor: pointer">
         <h3 id="userName">Username</h3>
         <p id="userJob">-</p>
       </div>
@@ -21,7 +21,7 @@
         <h4 id="date"></h4>
         <p id="clock"></p>
       </div>
-    </nav>
+    </header>
     <section>
       <div class="container form-task" id="formTask">
         <button id="addTaskBtn" class="add-task-btn" onclick="expandForm()">
@@ -58,11 +58,11 @@
         <div id="containerTasks" class="container-tasks"></div>
       </div>
       <div class="container">
-        <h3 style="color: #4caf50">Completed Tasks</h3>
+        <h3>Completed Tasks</h3>
         <div id="containerTasks" class="container-tasks"></div>
       </div>
       <div class="container">
-        <h3 style="color: #f44336">Overdue Tasks</h3>
+        <h3>Overdue Tasks</h3>
         <div id="containerTasks" class="container-tasks"></div>
       </div>
       <div class="container buttons">
@@ -75,11 +75,11 @@
         <h2>Profile</h2>
         <p class="error-message hidden">Name field cannot be empty!</p>
         <div class="input-wrapper">
-          <input type="text" id="inputName" maxlength="35" placeholder="" autocomplete="off" />
+          <input type="text" id="inputName" maxlength="35" placeholder="" />
           <span>Enter your name</span>
         </div>
         <div class="input-wrapper">
-          <input type="text" id="inputJob" maxlength="30" placeholder="" autocomplete="off" />
+          <input type="text" id="inputJob" maxlength="30" placeholder="" />
           <span>Enter your job</span>
         </div>
         <button id="saveProfileBtn">SAVE</button>
@@ -102,5 +102,6 @@
     </footer>
 
     <script src="./script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </body>
 </html>
