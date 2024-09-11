@@ -102,6 +102,11 @@ submitTaskBtn.addEventListener("click", function () {
       timer: 3000,
       timerProgressBar: true,
     });
+
+    // reset form value
+    taskText.value = "";
+    priorityLevel.value = "low";
+    taskDate.value = deadlineDate();
   } else {
     document.querySelectorAll(".error-message")[0].classList.remove("hidden");
     const Toast = Swal.mixin({
